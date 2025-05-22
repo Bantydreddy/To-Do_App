@@ -1,0 +1,284 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap');
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(22, 24, 34);
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+.todo-container{
+    background: #2c6c91;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgb(77, 67, 230);
+    width: 100%;
+    max-width: 400px;
+}
+
+
+h1{
+    font-family: Emilys Candy;
+    text-align: center;
+    color:#040c5c;
+}
+
+.input-section{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 3000px;
+    
+}
+
+input{
+    float: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width:30cap;
+    flex-wrap: wrap;
+}
+
+button{
+    padding: 10px 15px;
+    border: none;
+    background-color: rgb(19, 221, 19);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 8cap;
+}
+
+button:hover {
+    background-color: rgb(17, 167, 17);
+}
+
+button.add-btn:hover {
+    background-color: rgb(17, 167, 17);
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    border: solid #333;
+    border-color: #e0cdcd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    word-break: break-word;
+    
+}
+
+
+li {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+li.completed{
+    text-decoration: line-through;
+    color: grey;
+}
+
+
+li.completed:hover{
+    background-color: aqua;
+}
+
+.delete-btn{
+    background-color: tomato;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: rgb(204, 50, 50);
+}
+
+#themeToggle{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    padding: 8px 12px;
+    background-color: #2f3236;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor:pointer;
+    z-index: 1000;
+    font-size: 18px;
+    border: solid #5d6081;
+    border-radius:20px;
+    box-shadow:#aaa;
+}
+
+.name-bar {
+    position: fixed;
+    bottom: 0;
+    left: 100%;
+    background: #253441;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px 0 0 0;
+    font-size: 18px;
+    white-space: nowrap;
+    width: max-content;
+    animation: slideLeft 8s linear infinite;
+}
+
+@keyframes slideLeft {
+    0% {
+        left: 100%;
+        transform: translateX(0);
+    }
+    100% {
+        left: 0;
+        transform: translateX(0);
+    }
+}
+
+#themeToggle:hover{
+    background-color: #222;
+}
+
+
+body.light-mode{
+    background-color: #f0f0f0;
+    color:black;
+}
+
+body.light-mode .todo-container{
+    background: #ffffff;
+    box-shadow: 0 4px 10px #aaa;
+}
+
+body.light-mode input{
+    background-color: white;
+    color: black;
+    border: solid #6088a0;
+}
+
+body.light-mode li{
+    background-color: white;
+    color: black;
+}
+
+body.light-mode li.completed:hover{
+    background-color: rgb(196, 252, 252);
+}
+
+body.light-mode button{
+    background-color: #b9b8b8;
+    color: #121212;
+}
+
+body.light-mode button:hover{
+    background-color: #c0c0cf;
+    color: white;
+}
+
+body.light-mode .delete-btn{
+    background-color: tomato;
+}
+
+body.light-mode .delete-btn:hover{
+    background-color: #c9302c;
+}
+
+body.light-mode .name-bar{
+    background-color: #aaa;
+    color: #444;
+}
+
+
+body.dark-mode{
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .todo-container{
+    background: #1e1e2f;
+    box-shadow: 0 4px 10px #444;
+}
+
+body.dark-mode .todo-container h1{
+    color: #6088a0;
+}
+
+body.dark-mode input{
+    background-color: #2a2a3d;
+    color: white;
+    border: solid #2c6c91;
+}
+
+body.dark-mode li{
+    background-color: #2a2a3d;
+    color: white;
+}
+
+body.dark-mode li.completed:hover{
+    background-color: rgb(197, 199, 199);
+}
+
+body.dark-mode button{
+    background-color: #2b2b4d;
+    color: white;
+}
+
+body.dark-mode button:hover{
+    background-color: #2c2c6d;
+    color: white;
+}
+
+
+body.dark-mode .delete-btn{
+    background-color: #ff5c5c;
+}
+
+body.dark-mode .delete-btn:hover{
+    background-color: #ff1a1a;
+}
+
+.custom-tooltip {
+    position: fixed;
+    background-color: lightblue;
+    color: #000;
+    padding: 6px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    pointer-events: none;
+    display: none;
+    z-index: 9999;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+}
+
+
