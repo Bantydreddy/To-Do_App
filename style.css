@@ -282,3 +282,18 @@ body.dark-mode .delete-btn:hover{
 }
 
 
+@media(max-width: 764px){
+    .input-section{
+        gap: 5px;
+        margin-bottom: 15px;
+        width: 600px;
+        
+    }
+    
+    input{
+        width:24cap;
+    
+    }
+    
+}
+
