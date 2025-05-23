@@ -291,8 +291,8 @@ body.dark-mode .delete-btn:hover{
     }
     
     input{
-        width:24cap;
-    
+        width:22cap;
+        padding-left:10px;
     }
     
 }
