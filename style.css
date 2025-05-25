@@ -7,6 +7,9 @@ body{
     display: flex;
     justify-content: center;
     padding: 50px;
+    flex-wrap: nowrap;
+    padding-inline: 15%;
+    
 }
 
 .todo-container{
@@ -39,7 +42,8 @@ input{
     border-radius: 5px;
     border: 1px solid #ccc;
     width:30cap;
-    flex-wrap: wrap;
+    display:flex;
+    flex-wrap: nowrap;
 }
 
 button{
@@ -213,6 +217,11 @@ body.light-mode .name-bar{
     color: #444;
 }
 
+body.light-mode #themeToggle{
+    background-color: #978874;
+    color:#3bbbb5;
+}
+
 
 body.dark-mode{
     background-color: #121212;
@@ -291,8 +300,11 @@ body.dark-mode .delete-btn:hover{
     }
     
     input{
-        width:22cap;
+        width: 21cap;
     }
     
+    button{
+        width: 6cap;
+    }
 }
 
