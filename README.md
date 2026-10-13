@@ -5,8 +5,12 @@ A simple and elegant **To-Do List App** built using **HTML, CSS, and JavaScript*
 🔗 [Live Demo](https://bantydreddy.github.io/To-Do_App/)
 
 ## 🚀 Features
-- ✅ Add and delete tasks
-- 🌗 Light Mode / Dark Mode toggle
+- ✅ Add, complete and delete tasks (click or press Space/Enter on a task to toggle it)
+- 🔎 Filter by All / Pending / Done, plus a "Clear done" button and a live task counter
+- 💾 Tasks and your chosen theme are saved in the browser (localStorage), so they survive a refresh
+- 📱 Fully responsive layout that works on phones
+- ♿ Keyboard friendly, with visible focus styles and screen-reader labels
+- 🌗 Normal / Light / Dark theme toggle
 - ✨ Smooth CSS animations and transitions
 - 🖱️ Interactive hover effects on buttons and tasks
 
@@ -28,9 +32,10 @@ Easily switch between **Dark Mode** and **Light Mode** using a toggle button. Th
 - **JavaScript (Vanilla)** – DOM manipulation and event handling
 
 ## 📌 To-Do
-- [ ] Make the layout responsive for mobile devices
+- [x] Make the layout responsive for mobile devices
 - [ ] Add edit task functionality
-- [ ] Add task categories and filters
+- [x] Add task filters
+- [ ] Add task categories
 
 ## 👨‍💻 Author
 **Danlizy Ochieng**  

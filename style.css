@@ -1,150 +1,326 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap');
 
-body{
+/* ---------- Theme variables (default = blue theme) ---------- */
+:root {
+    --bg: rgb(22, 24, 34);
+    --card: #2c6c91;
+    --card-shadow: 0 4px 10px rgb(77, 67, 230);
+    --title: #040c5c;
+    --text: #ffffff;
+    --muted: #d6e6f0;
+    --item-bg: #ffffff;
+    --item-text: #111111;
+    --item-border: #e0cdcd;
+    --input-bg: #ffffff;
+    --input-text: #111111;
+    --input-border: #cccccc;
+    --btn: rgb(19, 221, 19);
+    --btn-hover: rgb(17, 167, 17);
+    --btn-text: #ffffff;
+    --chip: rgba(255, 255, 255, 0.18);
+    --chip-active: #040c5c;
+    --del: tomato;
+    --del-hover: rgb(204, 50, 50);
+    --done-hover: aqua;
+    --error: #ffd0d0;
+    --bar: #253441;
+    --bar-text: #ffffff;
+    --toggle-bg: #2f3236;
+    --toggle-text: #ffffff;
+}
+
+body.light-mode {
+    --bg: #f0f0f0;
+    --card: #ffffff;
+    --card-shadow: 0 4px 10px #aaaaaa;
+    --title: #040c5c;
+    --text: #111111;
+    --muted: #555555;
+    --input-border: #6088a0;
+    --btn: #b9b8b8;
+    --btn-hover: #9a9aa8;
+    --btn-text: #121212;
+    --chip: #e4e4e4;
+    --chip-active: #2c6c91;
+    --done-hover: rgb(196, 252, 252);
+    --error: #b00020;
+    --bar: #aaaaaa;
+    --bar-text: #333333;
+    --toggle-bg: #978874;
+    --toggle-text: #3bbbb5;
+    --item-border: #d8d8d8;
+}
+
+body.dark-mode {
+    --bg: #121212;
+    --card: #1e1e2f;
+    --card-shadow: 0 4px 10px #444444;
+    --title: #6088a0;
+    --text: #e0e0e0;
+    --muted: #a8a8b8;
+    --item-bg: #2a2a3d;
+    --item-text: #ffffff;
+    --item-border: #34344d;
+    --input-bg: #2a2a3d;
+    --input-text: #ffffff;
+    --input-border: #2c6c91;
+    --btn: #2b2b4d;
+    --btn-hover: #2c2c6d;
+    --btn-text: #ffffff;
+    --chip: #2b2b4d;
+    --chip-active: #2c6c91;
+    --del: #ff5c5c;
+    --del-hover: #ff1a1a;
+    --done-hover: rgb(197, 199, 199);
+    --error: #ff9a9a;
+}
+
+/* ---------- Base ---------- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(22, 24, 34);
+    background-color: var(--bg);
+    color: var(--text);
     display: flex;
     justify-content: center;
-    padding: 50px;
-    flex-wrap: nowrap;
-    padding-inline: 15%;
-    
+    align-items: flex-start;
+    padding: 60px 16px 80px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.todo-container{
-    background: #2c6c91;
+.todo-container {
+    background: var(--card);
     padding: 25px 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgb(77, 67, 230);
+    box-shadow: var(--card-shadow);
     width: 100%;
-    max-width: 400px;
+    max-width: 440px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-h1{
-    font-family: Emilys Candy;
+h1 {
+    font-family: 'Emilys Candy', Arial, sans-serif;
     text-align: center;
-    color:#040c5c;
+    color: var(--title);
+    margin: 0 0 20px;
 }
 
-.input-section{
+/* ---------- Form ---------- */
+.input-section {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
-    width: 3000px;
-    
+    margin-bottom: 8px;
 }
 
-input{
-    float: 1;
+input {
+    flex: 1;
+    min-width: 0;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
-    width:30cap;
-    display:flex;
-    flex-wrap: nowrap;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 16px;
 }
 
-button{
+input:focus-visible,
+button:focus-visible,
+li:focus-visible {
+    outline: 3px solid #ffbf47;
+    outline-offset: 2px;
+}
+
+button {
     padding: 10px 15px;
     border: none;
-    background-color: rgb(19, 221, 19);
-    color: white;
+    background-color: var(--btn);
+    color: var(--btn-text);
     border-radius: 5px;
     cursor: pointer;
-    width: 8cap;
+    font-size: 15px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 button:hover {
-    background-color: rgb(17, 167, 17);
+    background-color: var(--btn-hover);
 }
 
-button.add-btn:hover {
-    background-color: rgb(17, 167, 17);
+button:active {
+    transform: scale(0.97);
 }
 
-ul{
+.message {
+    min-height: 20px;
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: var(--error);
+}
+
+/* ---------- Filters ---------- */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.filters {
+    display: flex;
+    gap: 6px;
+}
+
+.filter-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 20px;
+    background-color: var(--chip);
+    color: var(--text);
+}
+
+.filter-btn:hover {
+    background-color: var(--chip);
+    filter: brightness(1.15);
+}
+
+.filter-btn.active,
+.filter-btn.active:hover {
+    background-color: var(--chip-active);
+    color: #ffffff;
+}
+
+.clear-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    background-color: transparent;
+    color: var(--muted);
+    text-decoration: underline;
+}
+
+.clear-btn:hover {
+    background-color: transparent;
+    color: var(--text);
+}
+
+.clear-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+    text-decoration: none;
+}
+
+/* ---------- List ---------- */
+ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 li {
-    border: solid #333;
-    border-color: #e0cdcd;
-    padding: 10px;
+    border: 1px solid var(--item-border);
+    padding: 10px 12px;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: var(--item-bg);
+    color: var(--item-text);
     border-radius: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    word-break: break-word;
-    
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
+li span {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
 
-li {
-    opacity: 0;
-    transform: translateY(-10px);
-    animation: fadeIn 0.4s ease forwards;
+li.enter {
+    animation: fadeIn 0.4s ease;
 }
 
 @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-
-li.completed{
+li.completed {
     text-decoration: line-through;
     color: grey;
 }
 
-
-li.completed:hover{
-    background-color: aqua;
+li.completed:hover {
+    background-color: var(--done-hover);
 }
 
-.delete-btn{
-    background-color: tomato;
+.delete-btn {
+    background-color: var(--del);
     color: white;
-    border: none;
-    padding: 5px 8px;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 13px;
+    flex-shrink: 0;
 }
 
 .delete-btn:hover {
-    background-color: rgb(204, 50, 50);
+    background-color: var(--del-hover);
 }
 
-#themeToggle{
+.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--muted);
+    margin: 18px 0 6px;
+}
+
+.counter {
+    text-align: right;
+    font-size: 13px;
+    color: var(--muted);
+    margin: 10px 0 0;
+}
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
     position: absolute;
     top: 15px;
     right: 20px;
     padding: 8px 12px;
-    background-color: #2f3236;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor:pointer;
-    z-index: 1000;
-    font-size: 18px;
+    background-color: var(--toggle-bg);
+    color: var(--toggle-text);
     border: solid #5d6081;
-    border-radius:20px;
-    box-shadow:#aaa;
+    border-radius: 20px;
+    font-size: 18px;
+    z-index: 1000;
 }
 
+.theme-toggle:hover {
+    background-color: #222222;
+}
+
+/* ---------- Name bar (sliding credit) ---------- */
 .name-bar {
     position: fixed;
     bottom: 0;
     left: 100%;
-    background: #253441;
-    color: white;
+    background: var(--bar);
+    color: var(--bar-text);
     padding: 10px 20px;
     border-radius: 8px 0 0 0;
     font-size: 18px;
@@ -154,123 +330,15 @@ li.completed:hover{
 }
 
 @keyframes slideLeft {
-    0% {
+    from {
         left: 100%;
-        transform: translateX(0);
     }
-    100% {
+    to {
         left: 0;
-        transform: translateX(0);
     }
 }
 
-#themeToggle:hover{
-    background-color: #222;
-}
-
-
-body.light-mode{
-    background-color: #f0f0f0;
-    color:black;
-}
-
-body.light-mode .todo-container{
-    background: #ffffff;
-    box-shadow: 0 4px 10px #aaa;
-}
-
-body.light-mode input{
-    background-color: white;
-    color: black;
-    border: solid #6088a0;
-}
-
-body.light-mode li{
-    background-color: white;
-    color: black;
-}
-
-body.light-mode li.completed:hover{
-    background-color: rgb(196, 252, 252);
-}
-
-body.light-mode button{
-    background-color: #b9b8b8;
-    color: #121212;
-}
-
-body.light-mode button:hover{
-    background-color: #c0c0cf;
-    color: white;
-}
-
-body.light-mode .delete-btn{
-    background-color: tomato;
-}
-
-body.light-mode .delete-btn:hover{
-    background-color: #c9302c;
-}
-
-body.light-mode .name-bar{
-    background-color: #aaa;
-    color: #444;
-}
-
-body.light-mode #themeToggle{
-    background-color: #978874;
-    color:#3bbbb5;
-}
-
-
-body.dark-mode{
-    background-color: #121212;
-    color: #e0e0e0;
-}
-
-body.dark-mode .todo-container{
-    background: #1e1e2f;
-    box-shadow: 0 4px 10px #444;
-}
-
-body.dark-mode .todo-container h1{
-    color: #6088a0;
-}
-
-body.dark-mode input{
-    background-color: #2a2a3d;
-    color: white;
-    border: solid #2c6c91;
-}
-
-body.dark-mode li{
-    background-color: #2a2a3d;
-    color: white;
-}
-
-body.dark-mode li.completed:hover{
-    background-color: rgb(197, 199, 199);
-}
-
-body.dark-mode button{
-    background-color: #2b2b4d;
-    color: white;
-}
-
-body.dark-mode button:hover{
-    background-color: #2c2c6d;
-    color: white;
-}
-
-
-body.dark-mode .delete-btn{
-    background-color: #ff5c5c;
-}
-
-body.dark-mode .delete-btn:hover{
-    background-color: #ff1a1a;
-}
-
+/* ---------- Tooltip ---------- */
 .custom-tooltip {
     position: fixed;
     background-color: lightblue;
@@ -284,27 +352,36 @@ body.dark-mode .delete-btn:hover{
     z-index: 9999;
 }
 
-.fade-out {
-    opacity: 0;
-    transform: scale(0.95);
-    transition: all 0.3s ease;
-}
-
-
-@media(max-width: 764px){
-    .input-section{
-        gap: 5px;
-        margin-bottom: 15px;
-        width: 600px;
-        
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+    body {
+        padding: 70px 12px 80px;
     }
-    
-    input{
-        width: 21cap;
+
+    .todo-container {
+        padding: 20px 16px;
     }
-    
-    button{
-        width: 6cap;
+
+    .name-bar {
+        font-size: 14px;
+        padding: 8px 14px;
     }
 }
 
+@media (hover: none) {
+    .custom-tooltip {
+        display: none !important; /* no hover on touch screens */
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .name-bar {
+        animation: none;
+        left: auto;
+        right: 0;
+    }
+
+    li.enter {
+        animation: none;
+    }
+}
